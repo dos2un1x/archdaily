@@ -84,11 +84,11 @@ TELNETCONSOLE_ENABLED = True
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-    'scrapy.contrib.spidermiddleware.depth.DepthMiddleware': 100,
-    'scrapy.contrib.spidermiddleware.httperror.HttpErrorMiddleware': 100,
-    'scrapy.contrib.spidermiddleware.referer.RefererMiddleware': 100,
+    'scrapy.contrib.spidermiddleware.depth.DepthMiddleware': None,
+    'scrapy.contrib.spidermiddleware.httperror.HttpErrorMiddleware': None,
+    'scrapy.contrib.spidermiddleware.referer.RefererMiddleware': None,
 }
-SPLASH_URL = 'http://192.168.1.16:8050'
+SPLASH_URL = 'http://127.0.0.1:8050'
 DEPTH_LIMIT = 3
 DEPTH_PRIORITY = 3
 DEPTH_STATS = False
@@ -104,10 +104,10 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
     'scrapy.downloadermiddleware.useragent.UserAgentMiddleware': None,
     'archdaily.middlewares.MyUserAgentMiddleware': 400,
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware': 500,
-    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 500,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': None,
     'scrapy.contrib.downloadermiddleware.defaultheaders.DefaultHeadersMiddleware': None,
-    'scrapy.contrib.downloadermiddleware.downloadtimeout.DownloadTimeoutMiddleware': 500,
+    'scrapy.contrib.downloadermiddleware.downloadtimeout.DownloadTimeoutMiddleware': None,
     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': None,
     'scrapy.contrib.downloadermiddleware.stats.DownloaderStats': None,
 }
