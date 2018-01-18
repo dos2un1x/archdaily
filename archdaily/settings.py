@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'archdaily.spiders'
 #USER_AGENT = 'archdaily (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 32
@@ -27,7 +27,7 @@ CONCURRENT_REQUESTS = 32
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 3
-DOWNLOAD_TIMEOUT = 30
+DOWNLOAD_TIMEOUT = 60
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 32
 CONCURRENT_REQUESTS_PER_IP = 0
@@ -52,7 +52,7 @@ SPIDER_MIDDLEWARES = {
     'scrapy.spidermiddleware.referer.RefererMiddleware': None,
     'scrapy.spidermiddleware.httperror.HttpErrorMiddleware': None,
 }
-SPLASH_URL = 'http://127.0.0.1:8050'
+SPLASH_URL = 'http://192.168.3.10:8050'
 DEPTH_LIMIT = 3
 DEPTH_PRIORITY = 3
 DEPTH_STATS = False
@@ -73,6 +73,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddleware.defaultheaders.DefaultHeadersMiddleware': None,
     'scrapy.downloadermiddleware.downloadtimeout.DownloadTimeoutMiddleware': None,
     'scrapy.downloadermiddleware.httpproxy.HttpProxyMiddleware': None,
+#    'archdaily.middlewares.ProxyMiddleWare': 125,
     'scrapy.downloadermiddleware.stats.DownloaderStats': None,
 }
 
@@ -93,9 +94,13 @@ RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 408]
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'archdaily.pipelines.TestSpiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+#    'scrapy.pipeline.images.ImagesPipeline': 1,
+#    'scrapy.pipeline.files.FilesPipeline': 1,
+    'archdaily.middlewares.MyImagesPipeline': 1,
+}
+IMAGES_STORE = 'C:\Users\Administrator\PycharmProjects\pic'
+FILES_STORE = 'C:\Users\Administrator\PycharmProjects\pic'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

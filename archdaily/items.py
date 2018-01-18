@@ -7,7 +7,6 @@
 
 import scrapy
 
-
 class ArchdailyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
@@ -16,5 +15,9 @@ class ArchdailyItem(scrapy.Item):
     link_page = scrapy.Field()
     img_page = scrapy.Field()
     img_data = scrapy.Field()
-    img_url = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
+    image_paths = scrapy.Field()
+    # file_urls = scrapy.Field()
+    # files = scrapy.Field()
     pass

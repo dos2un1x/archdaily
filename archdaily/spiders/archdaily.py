@@ -48,10 +48,11 @@ class archdaily(scrapy.Spider):
         item = ArchdailyItem()
         for img_data in sel.xpath('//*[@id="gallery-items"]/@data-images').extract():
             js = json.loads(img_data, encoding='utf-8')
+            #js = json.dumps(img_data, encoding='utf-8')
             for img_urls in js:
-                item['img_url'] = img_urls['url_large']
-                print "img url is: " + item['img_url']
-
+                item['image_urls'] = img_urls['url_large']
+                print "img url is: " + item['image_urls']
+                return item
 
         # for item['url'] in sel.xpath('//li[@class="afd-search-list__item"]/a/@href').extract():
         #     first_url = response.urljoin(item['url'])
