@@ -48,11 +48,11 @@ TELNETCONSOLE_PORT = [6023, 6073]
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-    'scrapy.spidermiddleware.depth.DepthMiddleware': None,
-    'scrapy.spidermiddleware.referer.RefererMiddleware': None,
-    'scrapy.spidermiddleware.httperror.HttpErrorMiddleware': None,
+    # 'scrapy.spidermiddleware.depth.DepthMiddleware': None,
+    # 'scrapy.spidermiddleware.referer.RefererMiddleware': None,
+    # 'scrapy.spidermiddleware.httperror.HttpErrorMiddleware': None,
 }
-SPLASH_URL = 'http://192.168.3.10:8050'
+SPLASH_URL = 'http://192.168.1.16:8050'
 DEPTH_LIMIT = 3
 DEPTH_PRIORITY = 3
 DEPTH_STATS = False
@@ -66,16 +66,30 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-    'scrapy.downloadermiddleware.useragent.UserAgentMiddleware': None,
     'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-    'scrapy.downloadermiddleware.cookies.CookiesMiddleware': None,
-    'scrapy.downloadermiddleware.defaultheaders.DefaultHeadersMiddleware': None,
-    'scrapy.downloadermiddleware.downloadtimeout.DownloadTimeoutMiddleware': None,
-    'scrapy.downloadermiddleware.httpproxy.HttpProxyMiddleware': None,
-#    'archdaily.middlewares.ProxyMiddleWare': 125,
-    'scrapy.downloadermiddleware.stats.DownloaderStats': None,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
+    # 'scrapy.downloadermiddleware.useragent.UserAgentMiddleware': None,
+    # 'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+    # 'scrapy.downloadermiddleware.cookies.CookiesMiddleware': None,
+    # 'scrapy.downloadermiddleware.defaultheaders.DefaultHeadersMiddleware': None,
+    # 'scrapy.downloadermiddleware.downloadtimeout.DownloadTimeoutMiddleware': None,
+    # 'scrapy.downloadermiddleware.httpproxy.HttpProxyMiddleware': None,
+    # 'scrapy.downloadermiddleware.stats.DownloaderStats': None,
 }
+
+# ROTATING_PROXY_LIST = [
+#     'https://209.91.223.227:8080',
+#     'https://36.78.60.125:8080',
+#     # ...
+# ]
+ROTATING_PROXY_LIST_PATH = 'proxies.txt'
+# ROTATING_PROXY_LOGSTATS_INTERVAL = 5
+# ROTATING_PROXY_CLOSE_SPIDER = True
+# ROTATING_PROXY_PAGE_RETRY_TIMES = 5
+# ROTATING_PROXY_BACKOFF_BASE = 300
+# ROTATING_PROXY_BACKOFF_CAP = 3600
+# ROTATING_PROXY_BAN_POLICY = 'rotating_proxies.policy.BanDetectionPolicy'
 
 COMPRESSION_ENABLED = True
 DOWNLOADER_STATS = True
